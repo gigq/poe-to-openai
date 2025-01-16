@@ -1,7 +1,6 @@
 aiohttp==3.9.3
 aiosignal==1.3.1
 annotated-types==0.6.0
-anyio==4.3.0
 async-timeout==4.0.3
 attrs==23.2.0
 certifi==2024.2.2
@@ -10,9 +9,8 @@ click==8.1.7
 colorama==0.4.6
 dataclasses-json==0.6.4
 exceptiongroup==1.2.0
-fastapi==0.109.2
 fastapi-cache2==0.2.1
-fastapi_poe==0.0.46
+fastapi_poe==0.0.53
 fp==0.2
 frozenlist==1.4.1
 greenlet==3.0.3
@@ -37,7 +35,6 @@ pydantic==2.6.1
 pydantic_core==2.16.2
 python-dateutil==2.8.2
 python-dotenv==1.0.1
-python-multipart==0.0.9
 PyYAML==6.0.1
 redis==4.6.0
 regex==2023.12.25
@@ -46,8 +43,6 @@ six==1.16.0
 sniffio==1.3.0
 socksio==1.0.0
 SQLAlchemy==2.0.27
-sse-starlette==2.1.0
-starlette==0.36.3
 tenacity==8.2.3
 tiktoken==0.6.0
 time-machine==2.13.0

@@ -42,7 +42,7 @@ async def stream_get_responses(api_key, prompt, bot):
 
     session = create_client()
     async for partial in get_bot_response(messages=messages, bot_name=bot_name, api_key=api_key,
-                                          skip_system_prompt=True, session=session):
+                                          skip_system_prompt=False, session=session):
         yield partial.text
 
 
