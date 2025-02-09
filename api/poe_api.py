@@ -67,6 +67,8 @@ def openai_message_to_poe_message(messages=[]):
     new_messages = []
     for message in messages:
         role = message["role"]
+        if role == 'developer':
+            continue
         if role == "assistant": role = "bot"
         new_messages.append(ProtocolMessage(role=role, content=message["content"]))
 
