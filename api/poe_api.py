@@ -70,6 +70,10 @@ def openai_message_to_poe_message(messages=[]):
         if role == 'developer':
             continue
         if role == "assistant": role = "bot"
+        # message["content"] 是list/ dict 等则转为str
+        if not isinstance(message["content"], str):
+            message["content"] = str(message["content"])
+            
         new_messages.append(ProtocolMessage(role=role, content=message["content"]))
 
     return new_messages
