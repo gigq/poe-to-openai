@@ -96,11 +96,29 @@ def openai_message_to_poe_message(messages=[]):
     new_messages = []
     for message in messages:
         role = message["role"]
-        if role == "assistant": role = "bot"
-        new_messages.append(ProtocolMessage(role=role, content=message["content"]))
+        if role == 'developer':
+            continue
+        if role == "assistant":
+            role = "bot"
 
+        # Handle content properly based on its type
+        content = message["content"]
+        if isinstance(content, list):
+            # Process the list of content parts
+            processed_content = ""
+            for item in content:
+                if isinstance(item, dict):
+                    if item.get("type") == "text":
+                        processed_content += item.get("text", "")
+                    # Handle other types as needed
+                else:
+                    processed_content += str(item)
+            content = processed_content
+        elif not isinstance(content, str):
+            content = str(content)
+
+        new_messages.append(ProtocolMessage(role=role, content=content))
     return new_messages
-
 
 def create_client():
     proxy_config = {

@@ -13,5 +13,6 @@ __pycache__/
 .idea/
 .env
 .history
+.conda
 
 test_data
