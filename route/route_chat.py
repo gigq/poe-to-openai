@@ -22,6 +22,23 @@ load_dotenv()
 async def root():
     return {"message": "Hello World"}
 
+@router.get("/v1/models")
+async def get_models():
+    models = [
+        {"id": "Gemini-2.5-Pro", "object": "model"},
+        {"id": "Grok-4", "object": "model"},
+        {"id": "GPT-4o", "object": "model"},
+        {"id": "GPT-4o-search", "object": "model"},
+        {"id": "o3", "object": "model"},
+        {"id": "o3-pro", "object": "model"},
+        {"id": "o4-mini", "object": "model"},
+        {"id": "o4-mini-deep-research", "object": "model"},
+        {"id": "Claude-Sonnet-4", "object": "model"},
+        {"id": "Claude-Opus-4", "object": "model"},
+        {"id": "Claude-Sonnet-4-Reasoning", "object": "model"},
+        {"id": "Claude-Opus-4-Reasoning", "object": "model"},
+    ]
+    return {"data": models}
 
 @router.post("/v1/chat/completions")
 async def chat_proxy(request: Request):

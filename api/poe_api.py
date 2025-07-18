@@ -8,15 +8,15 @@ from fastapi.responses import JSONResponse
 from fastapi_poe.client import get_bot_response, get_final_response, QueryRequest
 from fastapi_poe.types import ProtocolMessage
 
-timeout = 120
+timeout = 500
 
 logging.basicConfig(level=logging.DEBUG)
 
 client_dict = {}
 
 
-async def get_responses(api_key, prompt=[], bot="gpt-4"):
-    bot_name = get_bot(bot)
+async def get_responses(api_key, prompt=[], bot=""):
+    bot_name = bot
     # "system", "user", "bot"
     messages = openai_message_to_poe_message(prompt)
     print("=================", messages, "=================")
@@ -37,7 +37,7 @@ async def get_responses(api_key, prompt=[], bot="gpt-4"):
 
 
 async def stream_get_responses(api_key, prompt, bot):
-    bot_name = get_bot(bot)
+    bot_name = bot
     messages = openai_message_to_poe_message(prompt)
 
     session = create_client()
@@ -89,7 +89,7 @@ def add_token(token: str):
 
 def get_bot(model):
     model_mapping = json.loads(os.environ.get("MODEL_MAPPING", "{}"))
-    return model_mapping.get(model, "GPT-4o")
+    return model_mapping.get(model, "Unknown Model")
 
 
 def openai_message_to_poe_message(messages=[]):
