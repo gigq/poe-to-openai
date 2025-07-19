@@ -36,6 +36,12 @@ async def get_responses(api_key, prompt=[], bot=""):
     return await get_final_response(query, bot_name=bot_name, api_key=api_key, session=session)
 
 
+def is_thinking_token(text):
+    """Check if the text is a 'Thinking...' token that should be filtered out"""
+    if not text:
+        return False
+    return text.startswith("Thinking...") and "elapsed" in text
+
 async def stream_get_responses(api_key, prompt, bot):
     bot_name = bot
     messages = openai_message_to_poe_message(prompt)
@@ -43,7 +49,8 @@ async def stream_get_responses(api_key, prompt, bot):
     session = create_client()
     async for partial in get_bot_response(messages=messages, bot_name=bot_name, api_key=api_key,
                                           skip_system_prompt=False, session=session):
-        yield partial.text
+        if not is_thinking_token(partial.text):
+            yield partial.text
 
 
 async def get_image(api_key, prompt, bot="dall-e-3"):
