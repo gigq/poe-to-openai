@@ -40,7 +40,8 @@ def is_thinking_token(text):
     """Check if the text is a 'Thinking...' token that should be filtered out"""
     if not text:
         return False
-    return text.startswith("Thinking...") and "elapsed" in text
+    # Filter both "Thinking... (Xs elapsed)" and plain "Thinking..." tokens
+    return text.startswith("Thinking...") and ("elapsed" in text or text.strip() == "Thinking...")
 
 async def stream_get_responses(api_key, prompt, bot):
     bot_name = bot
