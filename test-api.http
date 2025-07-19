@@ -38,3 +38,57 @@ Authorization: {{authToken}}
   "n": 1,
   "size": "1024x1024"
 }
+
+### 4. Ollama API - Generate (非流式)
+POST {{baseUrl}}/api/generate
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "model": "gpt-4o",
+  "prompt": "Explain quantum computing in simple terms",
+  "stream": false
+}
+
+### 5. Ollama API - Generate (流式)
+POST {{baseUrl}}/api/generate
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "model": "gpt-4o",
+  "prompt": "Write a short story about a robot",
+  "stream": true
+}
+
+### 6. Ollama API - Chat (非流式)
+POST {{baseUrl}}/api/chat
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "model": "gpt-4o",
+  "messages": [
+    {"role": "user", "content": "Hello, how are you?"}
+  ],
+  "stream": false
+}
+
+### 7. Ollama API - Chat (流式)
+POST {{baseUrl}}/api/chat
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "model": "gpt-4o",
+  "messages": [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "What is the capital of France?"}
+  ],
+  "stream": true
+}
+
+### 8. Ollama API - Tags (Model List)
+GET {{baseUrl}}/api/tags
+Content-Type: application/json
+Authorization: {{authToken}}

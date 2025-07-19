@@ -6,7 +6,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from fastapi import APIRouter
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import JSONResponse, StreamingResponse, PlainTextResponse
 
 from api import poe_api
 from util import utils
@@ -20,7 +20,7 @@ load_dotenv()
 
 @router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return PlainTextResponse("Ollama is running")
 
 @router.get("/v1/models")
 async def get_models():
