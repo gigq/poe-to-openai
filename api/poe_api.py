@@ -41,7 +41,12 @@ def is_thinking_token(text):
     if not text:
         return False
     # Filter both "Thinking... (Xs elapsed)" and plain "Thinking..." tokens
-    return text.startswith("Thinking...") and ("elapsed" in text or text.strip() == "Thinking...")
+    if text.startswith("Thinking...") and ("elapsed" in text or text.strip() == "Thinking..."):
+        return True
+    # Filter Gemini-style thinking tokens that start with "*Thinking...*" or contain "> **" patterns
+    if text.startswith("*Thinking...*") or "> **" in text:
+        return True
+    return False
 
 async def stream_get_responses(api_key, prompt, bot):
     bot_name = bot
