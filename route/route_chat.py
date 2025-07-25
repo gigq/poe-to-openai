@@ -31,6 +31,7 @@ async def get_models():
         {"id": "GPT-4o-search", "object": "model"},
         {"id": "o3", "object": "model"},
         {"id": "o3-pro", "object": "model"},
+        {"id": "o3-deep-research", "object": "model"},
         {"id": "o4-mini", "object": "model"},
         {"id": "o4-mini-deep-research", "object": "model"},
         {"id": "Claude-Sonnet-4", "object": "model"},
